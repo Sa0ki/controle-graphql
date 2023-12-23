@@ -28,7 +28,7 @@ public class ComputerManagerAction implements IComputerManager{
     }
     @Override
     public ComputerDto deleteComputer(Long id) throws Exception {
-        Computer computer = computerRepository.findById(id).get();
+        Computer computer = computerRepository.findById(id).orElse(null);
         if(computer == null)
             throw new Exception("Computer doesn't exist");
         computerRepository.delete(computer);
