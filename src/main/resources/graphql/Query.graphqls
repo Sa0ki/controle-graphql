@@ -1,0 +1,4 @@
+type Query{
+    getComputerByProce(proce: String): [ComputerDto]
+    getComputerByPrice(price: Float): [ComputerDto]
+}
