@@ -19,16 +19,18 @@ public class ComputerManagerAction implements IComputerManager{
     private IComputerRepository computerRepository;
     private ComputerMapper computerMapper;
     @Override
-    public ComputerDto saveComputer(ComputerDto computerInput) {
+    public ComputerDto saveComputer(ComputerDto computerInput) throws Exception {
         if(this.computerExists(computerInput.getMacAdress()))
-            return null;
+            throw new Exception("Computer already exists.");
         return computerMapper.fromComputerToComputerDto(
                 computerRepository.save(computerMapper.fromComputerDtoToComputer(computerInput))
         );
     }
     @Override
-    public ComputerDto deleteComputer(Long id) {
+    public ComputerDto deleteComputer(Long id) throws Exception {
         Computer computer = computerRepository.findById(id).get();
+        if(computer == null)
+            throw new Exception("Computer doesn't exist");
         computerRepository.delete(computer);
         return computerMapper.fromComputerToComputerDto(computer);
     }

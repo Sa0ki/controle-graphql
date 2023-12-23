@@ -22,11 +22,11 @@ import java.util.List;
 public class ComputerGraphQLController {
     private ComputerManagerAction computerManagerAction;
     @MutationMapping
-    public ComputerDto saveComputer(@Argument ComputerDto computerInput){
+    public ComputerDto saveComputer(@Argument ComputerDto computerInput) throws Exception {
         return computerManagerAction.saveComputer(computerInput);
     }
     @MutationMapping
-    public ComputerDto deleteComputer(@Argument Long id){
+    public ComputerDto deleteComputer(@Argument Long id)throws Exception{
         return computerManagerAction.deleteComputer(id);
     }
     @QueryMapping
